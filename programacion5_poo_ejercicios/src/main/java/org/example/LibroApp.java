@@ -3,15 +3,15 @@ package org.example;
 public class LibroApp {
     public static void main(String[] args) {
 
-        Libro libro = new Libro(); // objeto
+        Libro libro_nuevo = new Libro(); // objeto
 
-        libro.setTitulo("El Quijote");
-        libro.setAutor("Cervantes");
-        libro.setNumeropaginas(500);
-        libro.setPrestado(true);
-        libro.prestar();
-        libro.devolver();
+        libro_nuevo.setTitulo("El Quijote");
+        libro_nuevo.setAutor("Cervantes");
+        libro_nuevo.setNumeropaginas(500);
+        libro_nuevo.setPrestado(true);
+        libro_nuevo.prestar();
+        libro_nuevo.devolver();
 
-        libro.mostrarinfo();
+        libro_nuevo.mostrarinfo();
     }
 }
