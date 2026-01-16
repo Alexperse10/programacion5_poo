@@ -13,7 +13,7 @@ public class televisor {
     // el estado actual es decir por defecto se coloca en el constructor
     public televisor() {
         canal=1;
-        volumen=5;
+        volumen=200;
         encendido= false;
     }
 

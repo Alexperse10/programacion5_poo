@@ -15,9 +15,16 @@ public class Main {
 
         System.out.println();
 
-        tv2.apagar();
+        tv2.encender();
         tv2.bajarcanal();
         tv2.subircanal();
         tv2.bajarvolumen();
+
+        int canalactual = tv1.getCanal();  // esto seria el getter
+        System.out.println(canalactual);
+
+
+
+
         }
     }
