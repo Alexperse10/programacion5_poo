@@ -74,6 +74,22 @@ public class ejercicio_libro_poo {
     public void setTitulo(String titulo) {
         this.titulo = titulo;
     }
+    @Override
+    public String toString() {
+        String estado;
+
+        if (disponible) {
+            estado = "Disponible";
+        } else {
+            estado = "Prestado";
+        }
+
+        return "\nID: " + libro_id +
+                "\nTítulo: " + titulo +
+                "\nAutor: " + autor +
+                "\nEstado: " + estado;
+    }
+
 
 
 
