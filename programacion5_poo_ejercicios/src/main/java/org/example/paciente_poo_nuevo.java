@@ -18,10 +18,10 @@ public class paciente_poo_nuevo {
         this.peso = peso;
         this.altura = altura;
 
-    public paciente_poo_nuevo (String nombre, int edad, char sexo) {
+    //public paciente_poo_nuevo (String nombre, int edad, char sexo) {
         this.nombre = nombre;
         this.edad = edad;
-        this,sexo = sexo;
+        //this,sexo = sexo;
         this.Dni = ;
         }
 
