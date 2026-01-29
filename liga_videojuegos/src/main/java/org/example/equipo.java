@@ -40,15 +40,13 @@ public class equipo {
             System.out.println("-" +uno);
         }
     }
-    int contador_puntos =0;
     public int calcularpuntosequipo () {
-        if (ejercicio_correcto){
-            contador_puntos++;
-            System.out.println("enhorabuena has consiguido un punto");
-        }else {
-            System.out.println("lo siento no has conseguido el punto");
+        int total =0;
+        for (int i =0; i<jugadores.size(); i++){  //mira desde el primer jugador hasta el ultimo
+            jugador uno = jugadores.get(i); // jugador en posicion i, lo guardas en la variable uno
+            total = total+ uno.getPuntos(); // coges los puntos de ese jugador y los sumas
         }
-        return contador_puntos;
+        return total;
     }
     @Override
     public String toString () {

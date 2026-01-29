@@ -10,11 +10,10 @@ public class liga {
         this.nombre = nombre;
         this.equipos = new ArrayList<>();
     }
-    int contador_equipos = 0;
+
     public void agregarequipo (equipo uno){
-        if (contador_equipos<5){
+        if (equipos.size()<5){
             equipos.add(uno);
-            contador_equipos++;
             System.out.println("se ha añadido con exito");
         }else {
             System.out.println("ha excedido el numero de inscripciones");
@@ -28,9 +27,10 @@ public class liga {
             System.out.println("-" +uno);
         }
     }
-    int max =0;
-    equipo ganador = null;
-    public int equipoganador () {
+
+    public equipo equipoganador () {
+        int max =0;
+        equipo ganador = null;
         for (int i =0; i<equipos.size(); i++){
             equipo uno = equipos.get(i);
             int puntos = uno.calcularpuntosequipo();
@@ -41,7 +41,11 @@ public class liga {
 
             }
         }
-        return ganador.contador_puntos;
+        return ganador;
+    }
+
+    public void mostrarequipoganador () {
+        System.out.println("equipo ganador: " + equipoganador().getNombre());
     }
 
 
