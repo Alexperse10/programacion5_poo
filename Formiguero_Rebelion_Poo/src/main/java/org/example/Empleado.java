@@ -29,7 +29,8 @@ public class Empleado {
 
     }
 
-    public String validarCargo(String cargo) {
+    public String validarCargo(String cargo) { // hay que parametrizarlo es decir meter una variable
+        // para que pueda trabajar, sino no sabe que parametro tiene que validar
         if (cargo.equalsIgnoreCase("director") ||
                 cargo.equalsIgnoreCase("tecnico") ||
                 cargo.equalsIgnoreCase("presentador") ||
@@ -41,5 +42,33 @@ public class Empleado {
             return "pte";
         }
     }
+
+    // set cargo no se pone porque ya lo valiadas en el constructor entonces si pones setter en en cargo alguien podria cambiarlo
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public String getCargo() {
+        return cargo;
+    }
+
+    public void setDirector(Empleado director) {
+        this.director = director;
+    }
+
+    public Empleado getDirector() {
+        return director;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+
 }
 
