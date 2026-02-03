@@ -11,6 +11,26 @@ public class Cadena {
         this.Programas = new ArrayList<>();
     }
 
+    public void añadirprograma(Programa programa) {
+        if (!programas.contains(programa)){
+            programas.add(programa);
+    }
+        if (programa.getCadena() != this){
+            programa.setCadena(this);
+        }
+}
+public  void eliminarprograma(Programa programa){
+        if (programa.contains(programa)) {
+            programas.remove(programa);
+        }
+        if (programa.getCadena() == this){
+            programa.setCadena(null);
+        }
+}
+public ArrayList<Programa> getPrograma() {
+        return programas;
+}
+
     public String getNombre() {
         return nombre;
     }

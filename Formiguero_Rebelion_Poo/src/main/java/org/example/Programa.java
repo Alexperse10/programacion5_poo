@@ -1,5 +1,6 @@
 package org.example;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 // en esta clase debe ir el metodo de contar invitados ya que es donde se encuentra la lista.
 public class Programa {
@@ -56,15 +57,68 @@ public class Programa {
         return contador_veces;
     }
 
-    public int rastrearinvitados(String nombre) {
+    public void rastrearinvitados(String nombre) {
         int veces = vecesinvitados(nombre);
         if (veces == 0) {
             System.out.println(" el invitado nunca ha acudido al programa");
 
+        }else {
+            System.out.println("el invitado  " + nombre + " ha aparecido " + veces);
+
+            for (int i = 0; i < invitados.size(); i++) {
+                Invitado invitado = invitados.get(i);
+
+                if (invitado.getNombre().equalsIgnoreCase(nombre)){
+                    System.out.println("temporada "+invitado.getTemporada() +" y fecha "+invitado.getFecha_visita());
+                }
+            }
         }
+
     }
 
+    public boolean buscarinivitado(String nombre) {
+        for (int i =0; i<invitados.size(); i++){
+            Invitado invitado = invitados.get(i);
+            if (invitado.getNombre().equalsIgnoreCase(nombre)){
+                return true;
 
+            }
+        }
+        return false;
+    }
+
+    public void invitadoAntes(String nombre, Programa otroprograma) {
+        boolean estuvoaqui = this.buscarinivitado(nombre); // se utiliza this para referirse al programa actual. si el invitado a ido a este programa.
+        boolean estuvoalli = otroprograma.buscarinivitado(nombre);// si ha ido al otro programa
+
+        if (!estuvoaqui || !estuvoalli) { // no estuvo aqui y no estuvo alli
+            System.out.println("el invitado debe haber acudido a ambos programas para comparar");
+
+            return;
+        }
+        LocalDate fechaaqui = null; // se crean dos variables para guardar las fechas, empieza en null porque aun no sabemos las fechas
+        LocalDate fechaalli = null;
+
+        for (int i = 0; i <this.invitados.size(); i++){
+            Invitado invitado = this.invitados.get(i);
+            if (invitado.getNombre().equalsIgnoreCase(nombre)){
+                fechaaqui = invitado.getFecha_visita();
+                break;
+            }
+        }
+        for (int i =0; i<otroprograma.invitados.size(); i++){
+            Invitado invitado = invitados.get(i);
+            if (invitado.getNombre().equalsIgnoreCase(nombre)){
+                fechaalli = invitado.getFecha_visita();
+                break;
+            }
+        }
+        if (fechaaqui.isBefore(fechaalli)){
+            System.out.println(nombre+"estuvo antes en el programa" +this.getNombre());
+        }else {
+            System.out.println("estuvo antes en el programa "+otroprograma.getNombre());
+        }
+    }
     public Empleado getDirector() {
         return director;
     }
