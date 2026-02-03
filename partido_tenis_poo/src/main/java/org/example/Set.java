@@ -12,17 +12,21 @@ public class Set {
     public boolean validarpuntos () {
         if (puntosj1<0 || puntosj2<0) {
             return false;
-        } else if (puntosj1<6 && puntosj2<6) {
+        } if (puntosj1<6 && puntosj2<6) {
             return false;
 
-        } else if (puntosj1 == 7 && (puntosj2>6 || puntosj2 <5)) {
+        } if (puntosj1 == 7 && (puntosj2>6 || puntosj2 <5)) {
             return false;
-        } else if (puntosj2 == 7 && (puntosj1>6 || puntosj1<5)) {
+        }  if (puntosj2 == 7 && (puntosj1>6 || puntosj1<5)) {
             return false;
+        }if (puntosj1 == puntosj2 && puntosj1>=6){ // no se permiten empates a partir de 6
+            return false; // && ambas condiciones deben cumplirse
+
         } else {
             return true;
     }
     }
+
 
     public int getPuntosj1() {
         return puntosj1;

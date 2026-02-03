@@ -3,11 +3,12 @@ package org.example;
 public class Jugador {
     private String nombre;
     private int ranking;
-    private String rival;
+    private Jugador rival;
 
     public Jugador(String nombre, int ranking) {
         this.nombre = nombre;
         this.ranking = ranking;
+
     }
 
 
@@ -27,7 +28,17 @@ public class Jugador {
         this.ranking = ranking;
     }
 
-    public String getRival() {
+    public Jugador getRival() {
         return rival;
+    }
+
+    public void setRival(Jugador rival) {
+        this.rival = rival;
+    }
+
+    @Override
+    public String toString (){
+        return "nombre: "+nombre+
+                "ranking: "+ranking;
     }
 }
