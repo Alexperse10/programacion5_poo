@@ -4,11 +4,11 @@ import java.util.ArrayList;
 
 public class Cadena {
     private String nombre;
-    private ArrayList<Programa> Programas;
+    private ArrayList<Programa> programas;
 
     public Cadena(String nombre) {
         this.nombre = nombre;
-        this.Programas = new ArrayList<>();
+        this.programas = new ArrayList<>();
     }
 
     public void añadirprograma(Programa programa) {
@@ -20,7 +20,7 @@ public class Cadena {
         }
 }
 public  void eliminarprograma(Programa programa){
-        if (programa.contains(programa)) {
+        if (programas.contains(programa)) {
             programas.remove(programa);
         }
         if (programa.getCadena() == this){
@@ -40,15 +40,16 @@ public ArrayList<Programa> getPrograma() {
     }
 
     public ArrayList<Programa> getProgramas() {
-        return Programas;
+        return programas;
     }
 
     public void setProgramas(ArrayList<Programa> programas) {
-        Programas = programas;
+        programas = programas;
     }
 
     @Override
     public String toString() {
-        return "nombre" +nombre;
+        return "cadena: "+nombre+
+                "programa: "+programas.size();
     }
 }

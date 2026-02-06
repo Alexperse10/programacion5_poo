@@ -12,7 +12,12 @@ public class Empleado {
         this.id = generarid();
         contadorid++;
         this.cargo = validarCargo(cargo);
-        this.director = director;
+        if (this.cargo.equalsIgnoreCase("director")){
+           this.director = null;
+        }else {
+            this.director = director;
+        }
+
     }
 
 
@@ -67,6 +72,13 @@ public class Empleado {
 
     public String getId() {
         return id;
+    }
+
+    @Override
+    public String toString() {
+        return "empleado: "+id+
+                "nombre: "+nombre+
+                "cargo: "+cargo;
     }
 
 

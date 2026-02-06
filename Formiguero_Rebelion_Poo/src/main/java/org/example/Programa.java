@@ -28,6 +28,19 @@ public class Programa {
 
     }
 
+    public void insertarEmpleado(String nombre, String cargo, Empleado director) {
+        Empleado nuevo = new Empleado(nombre, cargo, director);
+
+        if (!empleados.contains(nuevo)) {
+            empleados.add(nuevo);
+        }
+    }
+
+    public void insertarInvitado(String nombre, String profesion, int temporada, LocalDate fecha) {
+        Invitado nuevo = new Invitado(nombre, profesion, temporada, fecha);
+        invitados.add(nuevo);
+    }
+
     // hago el metodo en programa porque se encuentra la informacion que necesito como es la lista de invitados
     // se parametriza para que el metodo sepa que temporada tiene tantos invitados
     public int contar_invitados(int temporada) {
@@ -114,7 +127,7 @@ public class Programa {
             }
         }
         if (fechaaqui.isBefore(fechaalli)){
-            System.out.println(nombre+"estuvo antes en el programa" +this.getNombre());
+            System.out.println(nombre+"estuvo antes en el programa" +getNombre());
         }else {
             System.out.println("estuvo antes en el programa "+otroprograma.getNombre());
         }
@@ -156,6 +169,8 @@ public class Programa {
     public String toString() {
         return "nombre" +nombre+
                 "cadenas "+cadena+
-                "temporadas "+temporadas;
+                "temporadas "+temporadas+
+                "empleados "+empleados+
+                "invitados "+invitados;
     }
 }

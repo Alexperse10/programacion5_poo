@@ -9,16 +9,28 @@ public class Invitado {
     private int temporada;
     private static int contador_invitados = 1;
 
-    public Invitado(String nombre, String profesion, int temporada, LocalDate fecha_visita) {
+    public Invitado(String nombre, String profesion, int temporada) {
         this.nombre = nombre;
         this.profesion = profesion;
         contador_invitados++;
         this.temporada = temporada;
-        this.fecha_visita = fecha_visita;
+        this.fecha_visita = LocalDate.now();
+    }
+
+    public Invitado(String nombre, String profesion, int temporada, LocalDate fecha_visita) {
+        this.nombre = nombre;
+        this.profesion = profesion;
+        this.temporada = temporada;
+
+        if (fecha_visita == null) {
+            this.fecha_visita = LocalDate.now();
+        }else {
+            this.fecha_visita = fecha_visita;
+        }
     }
 
 
-LocalDate fecha = LocalDate.of(2025,03,15);
+
 
     public String getNombre() {
         return nombre;
@@ -33,8 +45,7 @@ LocalDate fecha = LocalDate.of(2025,03,15);
     }
 
     public LocalDate getFecha_visita() {
-        System.out.println("fecha de programa "+fecha);
-        return fecha;
+        return fecha_visita;
     }
 
     public void setProfesion(String profesion) {
@@ -49,6 +60,9 @@ LocalDate fecha = LocalDate.of(2025,03,15);
         this.temporada = temporada;
     }
 
+    public void setFecha_visita(LocalDate fecha_visita) {
+        this.fecha_visita = fecha_visita;
+    }
 
     @Override
     public String toString() {
