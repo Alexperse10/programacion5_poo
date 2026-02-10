@@ -30,6 +30,7 @@ public class Deportista {
 
 
 
+
     public String getNombre() {
         return nombre;
     }
