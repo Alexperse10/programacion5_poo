@@ -2,33 +2,44 @@ package org.example;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-// en esta clase debe ir el metodo de contar invitados ya que es donde se encuentra la lista.
+
+/**
+ * Clase que representa un programa de televisión.
+ * Contiene empleados, invitados y un director.
+ */
 public class Programa {
     private String nombre;
     private Cadena cadena;
     private int temporadas;
     private ArrayList<Empleado> empleados;
-    private ArrayList<Invitado> invitados; // invitados es una variable, una lista de invitados, es un contenedor guarada muchos invitados
-    private Empleado director; //decimos que director no es un string es un empleado
+    private ArrayList<Invitado> invitados;
+    private Empleado director;
 
-    // guarda un atributo del programa que guarda al empleado que dirige el programa
-// cuando ponemos un objeto de la clase en este caso cadena, lo paremetrizamos sin el tipo de dato
-    // programa y cadena tiene una relacion de asociacion agregacion, programa pertenece a una cadena
-    // importante director es un parametro y this.director es un atributo
+    /**
+     * Constructor del programa.
+     * Crea el programa y asigna un director automáticamente.
+     * @param nombre nombre del programa
+     * @param cadena cadena a la que pertenece
+     * @param director nombre del director
+     */
     public Programa(String nombre, Cadena cadena, String director) {
         this.nombre = nombre;
         this.cadena = cadena;
+
         this.temporadas = 0;
         this.empleados = new ArrayList<>();
         this.invitados = new ArrayList<>();
-        this.director = new Empleado(director, "director", null); // el director se crea en el constructor
-        // new significa crear un objeto nuevo, aqui estoy creando un objeto nuevo
-        // el primer parametro del constructor es la entrada que se le da, se le pone null en director porque el director no tiene otro director
-        this.empleados.add(this.director); // añado el director a la lista de empleados
 
+        this.director = new Empleado(director, "director", null);
+        this.empleados.add(this.director);
     }
 
-    public void insertarEmpleado(String nombre, String cargo, Empleado director) {
+    /**
+     * Inserta un empleado en el programa.
+     * @param nombre nombre del empleado
+     * @param cargo cargo del empleado
+     */
+    public void insertarEmpleado(String nombre, String cargo) {
         Empleado nuevo = new Empleado(nombre, cargo, director);
 
         if (!empleados.contains(nuevo)) {
@@ -36,46 +47,61 @@ public class Programa {
         }
     }
 
+    /**
+     * Inserta un invitado en el programa.
+     * @param nombre nombre del invitado
+     * @param profesion profesión
+     * @param temporada temporada
+     * @param fecha fecha de visita
+     */
     public void insertarInvitado(String nombre, String profesion, int temporada, LocalDate fecha) {
         Invitado nuevo = new Invitado(nombre, profesion, temporada, fecha);
         invitados.add(nuevo);
     }
 
-    // hago el metodo en programa porque se encuentra la informacion que necesito como es la lista de invitados
-    // se parametriza para que el metodo sepa que temporada tiene tantos invitados
+    /**
+     * Cuenta los invitados de una temporada y los muestra por pantalla.
+     * @param temporada temporada a consultar
+     * @return número de invitados
+     */
     public int contar_invitados(int temporada) {
         int contador = 0;
         for (int i = 0; i < invitados.size(); i++) {
-            Invitado invitado = invitados.get(i); // De la lista invitados, saca el invitado que está en la posición i y guárdalo en la variable invitado
+            Invitado invitado = invitados.get(i);
             if (invitado.getTemporada() == temporada) {
                 contador++;
                 System.out.println(invitado.getNombre() + " - " + invitado.getProfesion());
             }
-
         }
         return contador;
-
-
     }
 
+    /**
+     * Devuelve cuántas veces ha ido un invitado al programa.
+     * @param nombre nombre del invitado
+     * @return número de veces
+     */
     public int vecesinvitados(String nombre) {
         int contador_veces = 0;
-        for (int i = 0; i < invitados.size(); i++) { // se pone la lista porque es el numero de invitados
+        for (int i = 0; i < invitados.size(); i++) {
             Invitado invitado = invitados.get(i);
             if (invitado.getNombre().equalsIgnoreCase(nombre)) {
                 contador_veces++;
             }
-
         }
         return contador_veces;
     }
 
+    /**
+     * Muestra información sobre las veces que ha acudido un invitado.
+     * @param nombre nombre del invitado
+     */
     public void rastrearinvitados(String nombre) {
         int veces = vecesinvitados(nombre);
+
         if (veces == 0) {
             System.out.println(" el invitado nunca ha acudido al programa");
-
-        }else {
+        } else {
             System.out.println("el invitado  " + nombre + " ha aparecido " + veces);
 
             for (int i = 0; i < invitados.size(); i++) {
@@ -86,30 +112,38 @@ public class Programa {
                 }
             }
         }
-
     }
 
+    /**
+     * Busca si un invitado ha acudido al programa.
+     * @param nombre nombre del invitado
+     * @return true si ha acudido, false si no
+     */
     public boolean buscarinivitado(String nombre) {
         for (int i =0; i<invitados.size(); i++){
             Invitado invitado = invitados.get(i);
             if (invitado.getNombre().equalsIgnoreCase(nombre)){
                 return true;
-
             }
         }
         return false;
     }
 
+    /**
+     * Compara en qué programa ha estado antes un invitado.
+     * @param nombre nombre del invitado
+     * @param otroprograma otro programa a comparar
+     */
     public void invitadoAntes(String nombre, Programa otroprograma) {
-        boolean estuvoaqui = this.buscarinivitado(nombre); // se utiliza this para referirse al programa actual. si el invitado a ido a este programa.
-        boolean estuvoalli = otroprograma.buscarinivitado(nombre);// si ha ido al otro programa
+        boolean estuvoaqui = this.buscarinivitado(nombre);
+        boolean estuvoalli = otroprograma.buscarinivitado(nombre);
 
-        if (!estuvoaqui || !estuvoalli) { // no estuvo aqui y no estuvo alli
+        if (!estuvoaqui || !estuvoalli) {
             System.out.println("el invitado debe haber acudido a ambos programas para comparar");
-
             return;
         }
-        LocalDate fechaaqui = null; // se crean dos variables para guardar las fechas, empieza en null porque aun no sabemos las fechas
+
+        LocalDate fechaaqui = null;
         LocalDate fechaalli = null;
 
         for (int i = 0; i <this.invitados.size(); i++){
@@ -119,52 +153,90 @@ public class Programa {
                 break;
             }
         }
+
         for (int i =0; i<otroprograma.invitados.size(); i++){
-            Invitado invitado = invitados.get(i);
+            Invitado invitado = invitados.get(i); // (tu código original)
             if (invitado.getNombre().equalsIgnoreCase(nombre)){
                 fechaalli = invitado.getFecha_visita();
                 break;
             }
         }
+
         if (fechaaqui.isBefore(fechaalli)){
             System.out.println(nombre+"estuvo antes en el programa" +getNombre());
-        }else {
+        } else {
             System.out.println("estuvo antes en el programa "+otroprograma.getNombre());
         }
     }
+
+    /**
+     * Devuelve el director del programa.
+     * @return director
+     */
     public Empleado getDirector() {
         return director;
     }
 
+    /**
+     * Devuelve el nombre del programa.
+     * @return nombre
+     */
     public String getNombre() {
         return nombre;
     }
 
+    /**
+     * Cambia el nombre del programa.
+     * @param nombre nuevo nombre
+     */
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
+    /**
+     * Devuelve la cadena del programa.
+     * @return cadena
+     */
     public Cadena getCadena() {
         return cadena;
     }
 
+    /**
+     * Establece la cadena del programa.
+     * @param cadena cadena
+     */
     public void setCadena(Cadena cadena) {
         this.cadena = cadena;
     }
 
+    /**
+     * Devuelve el número de temporadas.
+     * @return temporadas
+     */
     public int getTemporadas() {
         return temporadas;
     }
-    // no se ponen las temporadas en set porque se incrementan, no se introducen
 
+    /**
+     * Devuelve la lista de empleados.
+     * @return lista de empleados
+     */
     public ArrayList<Empleado> getEmpleados() {
         return empleados;
     }
 
+    /**
+     * Devuelve la lista de invitados.
+     * @return lista de invitados
+     */
     public ArrayList<Invitado> getInvitados() {
         return invitados;
     }
 
+    /**
+     * Representación en texto del programa.
+     * @return información del programa
+     */
     @Override
     public String toString() {
         return "nombre" +nombre+

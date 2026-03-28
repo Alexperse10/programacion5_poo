@@ -1,0 +1,62 @@
+@startuml
+
+class Cadena {
+    - nombre : String
+    - programas : ArrayList<Programa>
+
+    + añadirprograma(programa : Programa)
+    + eliminarprograma(programa : Programa)
+    + getNombre() : String
+    + setNombre(nombre : String)
+    + getProgramas() : ArrayList<Programa>
+}
+
+class Programa {
+    - nombre : String
+    - cadena : Cadena
+    - temporadas : int
+    - empleados : ArrayList<Empleado>
+    - invitados : ArrayList<Invitado>
+    - director : Empleado
+
+    + insertarEmpleado(nombre : String, cargo : String)
+    + insertarInvitado(nombre : String, profesion : String, temporada : int, fecha : LocalDate)
+    + contar_invitados(temporada : int) : int
+    + vecesinvitados(nombre : String) : int
+    + rastrearinvitados(nombre : String)
+    + buscarinivitado(nombre : String) : boolean
+    + invitadoAntes(nombre : String, otroprograma : Programa)
+}
+
+class Empleado {
+    - id : String
+    - nombre : String
+    - cargo : String
+    - director : Empleado
+
+    + getNombre() : String
+    + getCargo() : String
+    + getDirector() : Empleado
+}
+
+class Invitado {
+    - nombre : String
+    - profesion : String
+    - fecha_visita : LocalDate
+    - temporada : int
+
+    + getNombre() : String
+    + getProfesion() : String
+    + getTemporada() : int
+    + getFecha_visita() : LocalDate
+}
+
+' RELACIONES
+
+Cadena "1" -- "*" Programa : tiene
+Programa "1" -- "*" Empleado : empleados
+Programa "1" -- "*" Invitado : invitados
+Programa "1" -- "1" Empleado : director
+Programa --> Cadena : pertenece
+
+@enduml

@@ -1,5 +1,9 @@
 package org.example;
 
+/**
+ * Clase que representa un empleado de un programa.
+ * Puede tener distintos cargos como director, técnico, etc.
+ */
 public class Empleado {
     private String id;
     private String nombre;
@@ -7,21 +11,31 @@ public class Empleado {
     private Empleado director; // director del programa que seria otro empleado
     private static int contadorid = 1;
 
+    /**
+     * Constructor del empleado.
+     * Genera automáticamente el id y valida el cargo.
+     * @param nombre nombre del empleado
+     * @param cargo cargo del empleado
+     * @param director director del programa
+     */
     public Empleado(String nombre, String cargo, Empleado director) {
         this.nombre = nombre;
         this.id = generarid();
         contadorid++;
         this.cargo = validarCargo(cargo);
+
         if (this.cargo.equalsIgnoreCase("director")){
-           this.director = null;
-        }else {
+            this.director = null;
+        } else {
             this.director = director;
         }
-
     }
 
-
-    public String generarid() {
+    /**
+     * Genera un id automático para el empleado.
+     * @return id generado
+     */
+    private String generarid() {
         String idgenerado;
         if (contadorid < 10) {
             idgenerado = "EP00" + contadorid;
@@ -31,11 +45,15 @@ public class Empleado {
             idgenerado = "EP" + contadorid;
         }
         return idgenerado;
-
     }
 
-    public String validarCargo(String cargo) { // hay que parametrizarlo es decir meter una variable
-        // para que pueda trabajar, sino no sabe que parametro tiene que validar
+    /**
+     * Valida el cargo del empleado.
+     * Si no es válido devuelve "pte".
+     * @param cargo cargo a validar
+     * @return cargo válido o "pte"
+     */
+    public String validarCargo(String cargo) {
         if (cargo.equalsIgnoreCase("director") ||
                 cargo.equalsIgnoreCase("tecnico") ||
                 cargo.equalsIgnoreCase("presentador") ||
@@ -48,39 +66,62 @@ public class Empleado {
         }
     }
 
-    // set cargo no se pone porque ya lo valiadas en el constructor entonces si pones setter en en cargo alguien podria cambiarlo
-
+    /**
+     * Cambia el nombre del empleado.
+     * @param nombre nuevo nombre
+     */
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
+    /**
+     * Devuelve el nombre del empleado.
+     * @return nombre
+     */
     public String getNombre() {
         return nombre;
     }
 
+    /**
+     * Devuelve el cargo del empleado.
+     * @return cargo
+     */
     public String getCargo() {
         return cargo;
     }
 
+    /**
+     * Establece el director del empleado.
+     * @param director director
+     */
     public void setDirector(Empleado director) {
         this.director = director;
     }
 
+    /**
+     * Devuelve el director del empleado.
+     * @return director
+     */
     public Empleado getDirector() {
         return director;
     }
 
+    /**
+     * Devuelve el id del empleado.
+     * @return id
+     */
     public String getId() {
         return id;
     }
 
+    /**
+     * Representación en texto del empleado.
+     * @return información del empleado
+     */
     @Override
     public String toString() {
         return "empleado: "+id+
                 "nombre: "+nombre+
                 "cargo: "+cargo;
     }
-
-
 }
-
