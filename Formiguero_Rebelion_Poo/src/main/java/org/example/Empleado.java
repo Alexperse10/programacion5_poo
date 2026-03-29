@@ -14,9 +14,9 @@ public class Empleado {
     /**
      * Constructor del empleado.
      * Genera automáticamente el id y valida el cargo.
-     * @param nombre nombre del empleado
-     * @param cargo cargo del empleado
-     * @param director director del programa
+     * @param nombre  del empleado
+     * @param cargo  del empleado
+     * @param director  del programa
      */
     public Empleado(String nombre, String cargo, Empleado director) {
         this.nombre = nombre;
@@ -50,7 +50,7 @@ public class Empleado {
     /**
      * Valida el cargo del empleado.
      * Si no es válido devuelve "pte".
-     * @param cargo cargo a validar
+     * @param cargo a validar
      * @return cargo válido o "pte"
      */
     public String validarCargo(String cargo) {
@@ -92,7 +92,7 @@ public class Empleado {
 
     /**
      * Establece el director del empleado.
-     * @param director director
+     * @param  director
      */
     public void setDirector(Empleado director) {
         this.director = director;
